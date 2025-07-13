@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/3240142295.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="music-player">
+        <nav>
+          <div class="circle">
+            <i class="fa-solid fa-angle-left"></i>
+          </div>
+          <div class="circle">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+        </nav>
+        <img
+          src="Kishor-Kumar-No-Background-Isolated-Image-PNG-Pngsource-MXT9JFZE.png"
+          class="song-img"
+          alt=""
+        />
+        <h1>Agar Tum Na Hote</h1>
+        <p>Kesor Kumar</p>
+        <audio controls id="song">
+          <source
+            src="Agar Tum Na Hote Male Version Agar Tum Na Hote 128 Kbps.mp3"
+            type="audio/mpeg"
+          />
+        </audio>
+        <input type="range" value="0" id="Progress" />
+        <div class="controls">
+          <div><i class="fa-solid fa-backward"></i></div>
+          <div onclick="playPause()">
+            <i class="fa-solid fa-play" id="playPauseIcon"></i>
+          </div>
+          <div><i class="fa-solid fa-forward"></i></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let Progress = document.getElementById("Progress");
+      let song = document.getElementById("song");
+      let playPauseIcon = document.getElementById("playPauseIcon");
+
+      song.onloadedmetadata = function () {
+        Progress.max = song.duration;
+        Progress.value = song.currentTime;
+      };
+
+      function playPause() {
+        if (playPauseIcon.classList.contains("fa-pause")) {
+          song.pause();
+          playPauseIcon.classList.remove("fa-pause");
+          playPauseIcon.classList.add("fa-play");
+        } else {
+          song.play();
+          playPauseIcon.classList.add("fa-pause");
+          playPauseIcon.classList.remove("fa-play");
+        }
+      }
+
+      if (song.play) {
+        setInterval(() => {
+          Progress.value = song.currentTime;
+        }, 500);
+      }
+      Progress.onchange = function () {
+        song.play();
+        song.currentTime = Progress.value;
+        if (!song.paused) {
+          playPauseIcon.classList.add("fa-pause");
+          playPauseIcon.classList.remove("fa-play");
+        } else {
+          playPauseIcon.classList.add("fa-play");
+          playPauseIcon.classList.remove("fa-pause");
+        }
+      };
+    </script>
+  </body>
+</html>
