@@ -33,3 +33,4 @@ const Navbar = ({ color }) => {
     </div>
   )
 }
+export default Navbar

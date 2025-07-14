@@ -36,6 +36,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <button onClick={()=>{btnRef.current.style.display = "none"}}>Change me</button>
+
     </>
   )
 }
